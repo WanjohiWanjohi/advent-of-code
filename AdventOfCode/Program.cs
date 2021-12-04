@@ -16,16 +16,15 @@ var solutionList = day2.ChallengeSolution(KeyPairs);
 var answer = day2.MultiplyPosition(solutionList);
 Console.WriteLine(answer);*/
 
-// Day 3 Cahllenge
+// Day 3 Challenge
 
 string Day3Url = "https://adventofcode.com/2021/day/3/input";
 Day3 day3 = new Day3(Day3Url);
 var content = day3.Day3Challenge(Day3Url);
-for (int i = 0; i < 13; i++)
-{
-    var positionArray = day3.TransformInput(content, i, 1);
+string[] gammaAndEpsilpon = day3.GetGammanEpsilon(content);
+var gamma = Convert.ToInt32(gammaAndEpsilpon[0] , 2);
+var epsilon = Convert.ToInt32(gammaAndEpsilpon[1] , 2);
+var powerConsumption = gamma * epsilon;
 
-}
 
-
-    Console.WriteLine(content);
+Console.WriteLine(powerConsumption);

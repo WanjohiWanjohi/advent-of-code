@@ -37,14 +37,40 @@ public class Day3 : InputClass
         }
         return verticalItems;
     }
-    public void GetMostandLeastCommon(IEnumerable<string> positionArray)
+    public string GetMostCommon(IEnumerable<string> positionArray)
     {
             var most = positionArray.GroupBy(k => k).OrderByDescending(grp => grp.Count())
               .Select(grp => grp.Key).First();
-            var least  = positionArray.GroupBy(i => i).OrderByDescending(grp => grp.Count())
-              .Select(grp => grp.Key).Last();
-       
+           
+        return most;
     }
+    public string GetLeastCommon(IEnumerable<string> positionArray)
+    {
+        var least = positionArray.GroupBy(i => i).OrderByDescending(grp => grp.Count())
+          .Select(grp => grp.Key).Last();
+        return least;
+    }
+    public string[] GetGammanEpsilon(string [] content)
+    {
+        List<string> maxValue = new();
+        List<string> minValue = new();
+        for (int i = 0; i < 12; i++)
+        {
+            var positionArray = TransformInput(content, i, 1);
+            var maxValueAtPosition = GetMostCommon(positionArray);
+            var minValueatPosition = GetLeastCommon(positionArray);
+            maxValue.Add(maxValueAtPosition);
+            minValue.Add(minValueatPosition);
+        }
+        string maxString = string.Join("", maxValue.ToArray());
+        string minString = string.Join("", minValue.ToArray());
+        string[] binaryOutput = { maxString, minString };
+        //convert this to a key value pair maybe 
+        return binaryOutput;
+
+    }
+
+
 }
 
 
