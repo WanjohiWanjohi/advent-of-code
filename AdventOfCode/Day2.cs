@@ -29,24 +29,45 @@ public class Day2 : InputClass
     {
         int horizontal = 0;
         int vertical = 0;
+        int aim = 0;
         foreach (var KeyPair in keyValuePairs)
         {
             if (KeyPair.Key == "forward")
             {
-                horizontal += Int32.Parse(KeyPair.Value);
+                var Value = Int32.Parse(KeyPair.Value);
+                horizontal += Value;
+                var DepthIncrease = aim * Value;
+                vertical += DepthIncrease;
+
             }
             else if (KeyPair.Key == "down")
             {
-                vertical += int.Parse(KeyPair.Value);
+                //vertical += int.Parse(KeyPair.Value);
+                aim +=int.Parse(KeyPair.Value);
             }
             else if (KeyPair.Key == "up")
             {
-                vertical -= int.Parse(KeyPair.Value);
+                //vertical -= int.Parse(KeyPair.Value);
+                aim -=int.Parse(KeyPair.Value);
             }
 
         }
-        int[] myPosition = { horizontal ,vertical};
+        int[] myPosition = { horizontal ,vertical };
         return myPosition;
+    }
+    public List<KeyValuePair<string, string>> SerializeintoKeyValue(string[] content)
+    {
+        var KeyPairs = new List<KeyValuePair<string, string>>();
+        foreach (string number in content)
+        {
+            string[] value = number.Split(' ');
+            if (value.Length > 1)
+            {
+                KeyValuePair<string, string> myKeyValuePair = new KeyValuePair<string, string>(value[0], value[1]);
+                KeyPairs.Add(myKeyValuePair);
+            }
+        }
+        return KeyPairs;
     }
     public int MultiplyPosition(int[] solution)
     {
