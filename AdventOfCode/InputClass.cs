@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode
 {
-    class InputClass
+   public class InputClass
     {
         public string? ResourceUrl { get; set; }
 
@@ -24,7 +24,7 @@ namespace AdventOfCode
             return client;
 
         }
-        async public Task<string[]> GetContent(string url, HttpClient client)
+        async public Task<string[]> GetContentAsync(string url, HttpClient client)
         {
             var content = await client.GetStringAsync(url);
             string[] StringInput = content.Split(new string[] { "\n" }, StringSplitOptions.None);

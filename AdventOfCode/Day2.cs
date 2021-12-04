@@ -3,17 +3,61 @@ using System.Net;
 using System.IO;
 using AdventOfCode;
 
-class Day2 : InputClass
+public class Day2 : InputClass   
+    
 {
+  
     public string resourceUrl { get; set; }
-    //= "https://adventofcode.com/2021/day/2/input";
+
+
     public Day2(string ResourceURL) : base()
     {
         resourceUrl = ResourceURL;
     }
 
-    public void Day2Challenge()
+    public string[] Day2Challenge(string ResourceUrl)
     {
+         HttpClient httpClient =base.CreateHttpClient();
+        httpClient.BaseAddress = new Uri(resourceUrl);
+        Task<string[]> urlContent = base.GetContentAsync(ResourceUrl, httpClient);
+        return urlContent.Result;
 
     }
+   
+    
+    public int[] ChallengeSolution(List<KeyValuePair<string, string>> keyValuePairs)
+    {
+        int horizontal = 0;
+        int vertical = 0;
+        foreach (var KeyPair in keyValuePairs)
+        {
+            if (KeyPair.Key == "forward")
+            {
+                horizontal += Int32.Parse(KeyPair.Value);
+            }
+            else if (KeyPair.Key == "down")
+            {
+                vertical += int.Parse(KeyPair.Value);
+            }
+            else if (KeyPair.Key == "up")
+            {
+                vertical -= int.Parse(KeyPair.Value);
+            }
+
+        }
+        int[] myPosition = { horizontal ,vertical};
+        return myPosition;
+    }
+    public int MultiplyPosition(int[] solution)
+    {
+        int prod = 1;
+        foreach (int value in solution)
+        {
+            prod *= value;
+        }
+        return prod;
+    }
+
 }
+
+

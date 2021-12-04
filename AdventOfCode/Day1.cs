@@ -34,11 +34,4 @@ class Day1: InputClass
         }
 
     }
-
-
-   
-
-
-
-
 }
