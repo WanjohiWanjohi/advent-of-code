@@ -65,22 +65,43 @@ public class Day3 : InputClass
         string maxString = string.Join("", maxValue.ToArray());
         string minString = string.Join("", minValue.ToArray());
         string[] binaryOutput = { maxString, minString };
-        //convert this to a key value pair maybe 
         return binaryOutput;
 
     }
-    public void OygenGeneratorRating(string[] content)
+    public string [] GetOygenGeneratorRating(string[] OxygenGeneratorRating)
     {
-        for (int i = 0; i < 12; i++)
+        foreach (var i in Enumerable.Range(0, 12))
         {
-            var positionArray = TransformInput(content, i, 1);
-            var maxValueAtPosition = GetMostCommon(positionArray);
-            Console.WriteLine(maxValueAtPosition.ToString());
+            var maxAndMin = GetGammaAndEpsilon(OxygenGeneratorRating);
+
+            if (OxygenGeneratorRating.Length > 1)
+            {
+                var mostFrequentString = maxAndMin[0];
+                var newList = OxygenGeneratorRating.Where(x => x != "")
+                                     .Where(x => x[i] == mostFrequentString[i] ||x[i] == 1).ToArray();
+                OxygenGeneratorRating = newList;
+            }
+        }
+        return OxygenGeneratorRating;
+
+    }
+    public string [] CO2ScrubberRating(string[] CO2ScrubberRating)
+    {
+        foreach (var i in Enumerable.Range(0, 12))
+        {
+
+            var maxAndMin2 = GetGammaAndEpsilon(CO2ScrubberRating);
+
+            if (CO2ScrubberRating.Length > 1)
+            {
+                var leastFrequentString = maxAndMin2[1];
+                var anotherNewList = CO2ScrubberRating.Where(x => x != "")
+                                        .Where(x => x[i] == leastFrequentString[i] || x[i] == 1).ToArray();
+                CO2ScrubberRating = anotherNewList;
+            }
 
         }
-    }
-    public void CO2ScrubberRating(string[] content)
-    {
+        return CO2ScrubberRating;
 
     }
 

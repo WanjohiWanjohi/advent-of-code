@@ -28,41 +28,15 @@ var gammaByte = gammaAndEpsilpon[0];
 var epsilonByte = gammaAndEpsilpon[1];
 var epsilon = Convert.ToInt32(gammaAndEpsilpon[1] , 2);
 var powerConsumption = gamma * epsilon;
-List<string> CO2Array = new ();
-List <string> O2Array = new();
-foreach (var contentString in content)
-{
-    if(contentString != "")
-    {
-        char firstCharacter = contentString[0];
-        char epsilonBit = epsilonByte[0];
-        char gammaBit = gammaByte[0];
-        Console.WriteLine(gammaBit);
-        if (firstCharacter.Equals(gammaBit))
-        {
-            O2Array.Add(contentString);
-        }
-        else if (firstCharacter.Equals( epsilonBit))
-        {
-            CO2Array.Add(contentString);
 
-        }
-    }
-}
+var OxygenGeneratorRating = content;
+var CO2ScrubberRating = content;
 
-foreach (var contentString in O2Array)
-{
-    for (int i = 0; i < 12; i++)
-    {
-        var positionArray = day3.TransformInput(O2Array.ToArray(), i, 1);
-        var maxValueAtPosition = day3.GetMostCommon(positionArray);
-        var minValueatPosition = day3.GetLeastCommon(positionArray);
-    }
-     
+var OxygenRating = Convert.ToInt32( day3.GetOygenGeneratorRating(OxygenGeneratorRating)[0] , 2);
+int CO2Rating = Convert.ToInt32(day3.CO2ScrubberRating(CO2ScrubberRating)[0] , 2);
+int lifesupportRating = CO2Rating * OxygenRating;
+Console.WriteLine(lifesupportRating);
 
-
-}
-Console.WriteLine(O2Array);
 
 
 
