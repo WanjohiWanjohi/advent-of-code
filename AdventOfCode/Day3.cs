@@ -50,7 +50,7 @@ public class Day3 : InputClass
           .Select(grp => grp.Key).Last();
         return least;
     }
-    public string[] GetGammanEpsilon(string [] content)
+    public string[] GetGammaAndEpsilon(string [] content)
     {
         List<string> maxValue = new();
         List<string> minValue = new();
@@ -67,6 +67,20 @@ public class Day3 : InputClass
         string[] binaryOutput = { maxString, minString };
         //convert this to a key value pair maybe 
         return binaryOutput;
+
+    }
+    public void OygenGeneratorRating(string[] content)
+    {
+        for (int i = 0; i < 12; i++)
+        {
+            var positionArray = TransformInput(content, i, 1);
+            var maxValueAtPosition = GetMostCommon(positionArray);
+            Console.WriteLine(maxValueAtPosition.ToString());
+
+        }
+    }
+    public void CO2ScrubberRating(string[] content)
+    {
 
     }
 
