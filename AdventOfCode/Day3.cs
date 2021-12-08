@@ -23,7 +23,6 @@ public class Day3 : InputClass
 
     }
 
-
     public IEnumerable<string> TransformInput(string[] content , int startIndex , int endIndex)
     {
         List<string> verticalItems = new List<string>();
@@ -70,34 +69,41 @@ public class Day3 : InputClass
     }
     public string [] GetOygenGeneratorRating(string[] OxygenGeneratorRating)
     {
-        foreach (var i in Enumerable.Range(0, 12))
+        foreach(var item in OxygenGeneratorRating.ToList())
         {
-            var maxAndMin = GetGammaAndEpsilon(OxygenGeneratorRating);
-
-            if (OxygenGeneratorRating.Length > 1)
+            //remove this constant in the range
+            foreach (var i in Enumerable.Range(0, item.Length+1))
             {
-                var mostFrequentString = maxAndMin[0];
-                var newList = OxygenGeneratorRating.Where(x => x != "")
-                                     .Where(x => x[i] == mostFrequentString[i] ||x[i] == 1).ToArray();
-                OxygenGeneratorRating = newList;
+                var maxAndMin = GetGammaAndEpsilon(OxygenGeneratorRating);
+
+                if (OxygenGeneratorRating.Length > 1)
+                {
+                    var mostFrequentString = maxAndMin[0];
+                    var newList = OxygenGeneratorRating.Where(x => x != "")
+                                         .Where(x => x[i] == mostFrequentString[i] || x[i] == 1).ToArray();
+                    OxygenGeneratorRating = newList;
+                }
             }
         }
+        
         return OxygenGeneratorRating;
 
     }
-    public string [] CO2ScrubberRating(string[] CO2ScrubberRating)
+    public string[] CO2ScrubberRating(string[] CO2ScrubberRating)
     {
-        foreach (var i in Enumerable.Range(0, 12))
+        foreach (var item in CO2ScrubberRating.ToList())
         {
-
-            var maxAndMin2 = GetGammaAndEpsilon(CO2ScrubberRating);
-
-            if (CO2ScrubberRating.Length > 1)
+            foreach (var i in Enumerable.Range(0, item.Length+1))
             {
-                var leastFrequentString = maxAndMin2[1];
-                var anotherNewList = CO2ScrubberRating.Where(x => x != "")
-                                        .Where(x => x[i] == leastFrequentString[i] || x[i] == 1).ToArray();
-                CO2ScrubberRating = anotherNewList;
+                var maxAndMin2 = GetGammaAndEpsilon(CO2ScrubberRating);
+
+                if (CO2ScrubberRating.Length > 1)
+                {
+                    var leastFrequentString = maxAndMin2[1];
+                    var anotherNewList = CO2ScrubberRating.Where(x => x != "")
+                                            .Where(x => x[i] == leastFrequentString[i] || x[i] == 1).ToArray();
+                    CO2ScrubberRating = anotherNewList;
+                }
             }
 
         }

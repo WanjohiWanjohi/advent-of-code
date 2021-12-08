@@ -29,13 +29,13 @@ var epsilonByte = gammaAndEpsilpon[1];
 var epsilon = Convert.ToInt32(gammaAndEpsilpon[1] , 2);
 var powerConsumption = gamma * epsilon;
 
-var OxygenGeneratorRating = content;
-var CO2ScrubberRating = content;
 
-var OxygenRating = Convert.ToInt32( day3.GetOygenGeneratorRating(OxygenGeneratorRating)[0] , 2);
-int CO2Rating = Convert.ToInt32(day3.CO2ScrubberRating(CO2ScrubberRating)[0] , 2);
-int lifesupportRating = CO2Rating * OxygenRating;
-Console.WriteLine(lifesupportRating);
+var OxygenRating = day3.GetOygenGeneratorRating(content)[0];
+int finalO2 = Convert.ToInt32(OxygenRating , 2);
+var CO2Thing = day3.CO2ScrubberRating(content)[0];
+int finalCO2 = Convert.ToInt32(CO2Thing , 2);
+var solution = finalO2 * finalCO2;
+Console.WriteLine(OxygenRating);
 
 
 
