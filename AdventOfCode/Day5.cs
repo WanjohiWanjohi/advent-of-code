@@ -3,36 +3,52 @@ using System.Net;
 using System.IO;
 using AdventOfCode;
 
-public class Day4 : InputClass   
+public class Day5 : InputClass   
 {
-    // bingo subsystem : automatically generates a random order in which to draw numbers and a random set of boards
+
+    public override string resourceUrl { get; set; }
 
 
-    public string resourceUrl { get; set; }
-
-
-    public Day4(string ResourceURL) : base()
+    public Day5(string ResourceURL) : base()
     {
         resourceUrl = ResourceURL;
     }
 
-    public string[] Day4Challenge(string ResourceUrl)
+    public string[] Day5Challenge()
     {
         HttpClient httpClient =base.CreateHttpClient();
-        Task<string[]> urlContent = base.GetContentAsync(ResourceUrl, httpClient);
+        Task<string[]> urlContent = base.GetContentAsync( httpClient);
         return urlContent.Result;
 
     }
-
-    public IEnumerable<string> StringsToDraw(string[] inputString)
+    internal Dictionary<string, int> GetSegment(string s, int segmentNumber)
     {
-        var inputArray = inputString.ToArray();
-        var bingoNumbers = new ArraySegment<string>(inputArray, 0, 1);
-        List<string> drawList = bingoNumbers[0].ToString().Split(",").ToList();
-        return drawList;
+        Dictionary<string, int> Segment = new Dictionary<string, int>();
+        string[] xAndY;
+        if (segmentNumber == 1)
+        {
+            xAndY = s.Split("->")[0].Split(",");
+
+        }
+        else if (segmentNumber == 2)
+        {
+            xAndY = s.Split("->")[1].Split(",");
+
+        }
+        else
+        {
+            return default;
+        }
+
+        Segment.Add("x", Convert.ToInt32(xAndY[0]));
+        Segment.Add("y", Convert.ToInt32(xAndY[1]));
+        return Segment;
+
     }
 
-   
+
+
+
 
 }
 

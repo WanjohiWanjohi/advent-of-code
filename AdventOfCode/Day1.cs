@@ -5,7 +5,7 @@ using AdventOfCode;
 
 class Day1: InputClass
 {
-    public string resourceUrl { get; set; }
+    public override string resourceUrl { get; set; }
         //= "https://adventofcode.com/2021/day/1/input";
     public Day1(string ResourceURL) :base()
     {

@@ -19,7 +19,7 @@ public class Day2 : InputClass
     {
          HttpClient httpClient =base.CreateHttpClient();
         httpClient.BaseAddress = new Uri(resourceUrl);
-        Task<string[]> urlContent = base.GetContentAsync(ResourceUrl, httpClient);
+        Task<string[]> urlContent = base.GetContentAsync( httpClient);
         return urlContent.Result;
 
     }

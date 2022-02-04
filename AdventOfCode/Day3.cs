@@ -6,7 +6,7 @@ using AdventOfCode;
 public class Day3 : InputClass   
 {
   
-    public string resourceUrl { get; set; }
+    public override string resourceUrl { get; set; }
 
 
     public Day3(string ResourceURL) : base()
@@ -18,7 +18,7 @@ public class Day3 : InputClass
     {
          HttpClient httpClient =base.CreateHttpClient();
         httpClient.BaseAddress = new Uri(resourceUrl);
-        Task<string[]> urlContent = base.GetContentAsync(ResourceUrl, httpClient);
+        Task<string[]> urlContent = base.GetContentAsync( httpClient);
         return urlContent.Result;
 
     }

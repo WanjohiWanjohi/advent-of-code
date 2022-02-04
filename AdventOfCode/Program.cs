@@ -1,5 +1,36 @@
 ﻿
 
+Day5 day5 = new Day5("https://adventofcode.com/2021/day/5/input");
+string[] input = day5.Day5Challenge();
+
+foreach (var s in input)
+{
+    if (s.Length < 3)
+    {
+        continue;
+    }
+
+    Dictionary<string, int> firstSegment = day5.GetSegment(s, 1);
+    Dictionary<string, int> secondSegment = day5.GetSegment(s, 2);
+
+
+
+
+    var a = secondSegment["y"]  - firstSegment["y"];
+    var b = secondSegment["x"]  -  firstSegment["x"];
+    var c = a * firstSegment["x"] + b * firstSegment["y"]; 
+
+}
+Console.WriteLine(input);
+
+
+
+// the program will receive an array of strings 
+// it will then split each item into corresponding 
+// the program then defines the line segments
+
+
+// find out at how many point there is an overlap 
 
 
 
@@ -9,7 +40,9 @@
 
 
 
-string Day4Url = "https://adventofcode.com/2021/day/4/input";
+
+
+
 
 
 

@@ -8,8 +8,7 @@ namespace AdventOfCode
 {
    public class InputClass
     {
-        public string? ResourceUrl { get; set; }
-
+        public virtual string? resourceUrl { get; set; }
         public InputClass()
         {
 
@@ -24,9 +23,9 @@ namespace AdventOfCode
             return client;
 
         }
-        async public Task<string[]> GetContentAsync(string url, HttpClient client)
+        async public Task<string[]> GetContentAsync( HttpClient client)
         {
-            var content = await client.GetStringAsync(url);
+            var content = await client.GetStringAsync(resourceUrl);
             string[] StringInput = content.Split(new string[] { "\n" }, StringSplitOptions.None);
             return StringInput;
         }
